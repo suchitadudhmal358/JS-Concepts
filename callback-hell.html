@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Callback Hell</title>
+  </head>
+  <body>
+    <style>
+      .go {
+        margin: 5rem;
+        background: burlywood;
+        padding: 5rem;
+        width: 5rem;
+        height: 5rem;
+        transition: all 0.2s;
+      }
+
+      .go.circle {
+        border-radius: 50%;
+      }
+
+      .go.red {
+        background: red;
+      }
+
+      .go.purple {
+        background: purple;
+      }
+
+      .go.fadeOut {
+        opacity: 0;
+      }
+    </style>
+
+    <div class="go">Click Me</div>
+
+    <script>
+      const go = document.querySelector(".go");
+
+      go.addEventListener("click", function (e) {
+        el = e.currentTarget;
+        el.textContent = "Go!";
+
+        setTimeout(function () {
+          el.classList.add("circle");
+          setTimeout(function () {
+            el.classList.add("red");
+            setTimeout(function () {
+              el.classList.remove("circle");
+              setTimeout(function () {
+                el.classList.remove("red");
+                el.classList.add("purple");
+                setTimeout(function () {
+                  el.classList.add("fadeOut");
+                }, 500);
+              }, 300);
+            }, 250);
+          }, 500);
+        }, 2000);
+      });
+    </script>
+  </body>
+</html>
